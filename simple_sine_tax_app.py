@@ -173,7 +173,7 @@ st.sidebar.markdown("""
 - **Investment Period**: 8 years
 - **No growth trend**: Flat baseline
 - **No dividends**: Pure price movement
-- **5 Entry Points**: Years 0, 2, 4, 6, 8
+- **4 Entry Points**: Years 0, 2, 4, 6
 
 ### The Question
 If all investors end with the **same final value**, 
@@ -181,11 +181,17 @@ should they pay **different taxes** based on
 when they entered?
 """)
 
+run_button = st.sidebar.button("🚀 Run Analysis", type="primary")
+
+if not run_button:
+    st.info("👈 Click 'Run Analysis' in the sidebar to begin")
+    st.stop()
+
 # Generate the sine wave
 prices = generate_simple_sine_wave(amplitude)
 time_years = np.arange(len(prices)) / 12
 
-# Define entry points (years 0, 2, 4, 6, 8)
+# Define entry points (years 0, 2, 4, 6)
 entry_years = [0, 2, 4, 6]
 entry_months = [int(y * 12) for y in entry_years]
 entry_labels = [f"Year {y}" for y in entry_years]
